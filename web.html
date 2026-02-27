@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>透明 WebM 播放器</title>
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+            font-family: sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 2em;
+        }
+        h1 {
+            color: #333;
+        }
+        #video-container {
+            margin-top: 2em;
+        }
+        video {
+            display: block;
+            margin: 0 auto;
+            max-width: 90%;
+            max-height: 70vh;
+            border: 1px solid #eee;
+        }
+        #file-info {
+            margin-top: 1em;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        /* 自定义文件上传按钮样式 */
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>透明 WebM 视频播放器</h1>
+    <p>请选择一个 .webm 文件进行播放。</p>
+
+    <label for="file-input" class="custom-file-upload">
+        选择文件
+    </label>
+    <input id="file-input" type="file" accept=".webm"/>
+
+    <div id="video-container">
+        <video id="video-player" controls autoplay loop muted playsinline>
+            <!-- 您的视频将在这里播放 -->
+        </video>
+    </div>
+
+    <div id="file-info">
+        <p id="file-name">尚未选择文件</p>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const videoPlayer = document.getElementById('video-player');
+        const fileNameDisplay = document.getElementById('file-name');
+
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+
+            if (file && file.type === "video/webm") {
+                const videoURL = URL.createObjectURL(file);
+                videoPlayer.src = videoURL;
+                fileNameDisplay.textContent = `当前文件: ${file.name}`;
+                videoPlayer.style.display = 'block';
+            } else {
+                fileNameDisplay.textContent = "请选择一个 .webm 格式的文件。";
+                videoPlayer.style.display = 'none';
+            }
+        });
+
+        videoPlayer.style.display = 'none';
+    </script>
+
+</body>
+</html>
