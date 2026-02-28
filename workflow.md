@@ -95,7 +95,7 @@ ffprobe -v error -select_streams v:0 -show_entries stream=pix_fmt "输出文件.
 ```
 - 期望输出：`pix_fmt=yuva420p`。
 
-#### 3. 正确播放测试（非常重要！）
+#### 3. 正确播放测试（非常重要！）--用web.html
 - **❌ 不要用** QuickTime Player、Windows 媒体播放器、Safari 浏览器 —— 它们不支持 WebM 透明，会显示黑底。
 - **✅ 必须用** Chrome、Firefox、Edge 浏览器打开 `.webm` 文件（直接将文件拖入浏览器窗口）。如果背景透明（通常显示为棋盘格或透出浏览器背景），说明转换成功。
 
